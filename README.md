@@ -19,8 +19,11 @@ Or install it yourself as:
     $ gem install santander_chile-api_client
 
 ## Usage
+
 ```rb
-TODO
+SantanderChile::ApiClient::Client.new do |config|
+    config.client_id = '<CLIENT_ID>'
+end
 ```
 ## Development
 
