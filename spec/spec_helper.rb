@@ -1,6 +1,7 @@
 require "bundler/setup"
 require "santander_chile/api_client"
-
+require "dotenv"
+Dotenv.load(".env")
 Dir[File.expand_path("helpers/**/*.rb", __dir__)].each { |f| require f }
 
 RSpec.configure do |config|

@@ -4,8 +4,13 @@ module SantanderChile
       class Configuration
         ATTRIBUTES = %i[
           client_id
+          faraday
         ].freeze
         attr_accessor(*ATTRIBUTES)
+
+        def initialize
+          self.faraday = ->(faraday) { }
+        end
 
         def validate!
           ATTRIBUTES.each do |key|
