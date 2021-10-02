@@ -1,11 +1,18 @@
+require "ostruct"
+
 module SantanderChile
   module ApiClient
     class Client
       module Authentication
-        AUTH_BASE_URL = "https://apideveloper.santander.cl/sancl/privado/Cliente/v1/"
-        attr_accessor :token
+        attr_accessor :token, :username
+        HEADERS = {
+          "app" => "007",
+          "canal" => "003",
+          "nro_ser" => "",
+        }
 
         def login(username:, password:, grant_type: "password")
+          self.username = username
           self.token = oauth_token(
             grant_type: grant_type,
             client_id: config.client_id,
@@ -13,6 +20,7 @@ module SantanderChile
             username: username,
             password: password,
           )
+          self.token
         end
 
         private
@@ -21,10 +29,11 @@ module SantanderChile
           response = connection(host: AUTH_BASE_URL).post(
             "oauth2/token",
             body: body,
+            headers: HEADERS,
             login: true,
           )
 
-          Token.new(response.body)
+          return Token.new(response.body)
         end
       end
     end

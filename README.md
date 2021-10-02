@@ -19,12 +19,23 @@ Or install it yourself as:
     $ gem install santander_chile-api_client
 
 ## Usage
-
+### Configuration
 ```rb
-SantanderChile::ApiClient::Client.new do |config|
+client = SantanderChile::ApiClient::Client.new do |config|
     config.client_id = '<CLIENT_ID>'
 end
 ```
+### Resources
+
+#### Products (accounts)
+```rb
+results = client.products.list
+#=> SantanderChile::ApiClient::Collection
+
+results.data
+#=> [#<SantanderChile::ApiClient::Account>, #<SantanderChile::ApiClient::Account:>]
+```
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.

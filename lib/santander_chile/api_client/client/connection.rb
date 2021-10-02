@@ -2,12 +2,6 @@ module SantanderChile
   module ApiClient
     class Client
       class Connection
-        EXTRA_HEADERS = {
-          "app" => "007",
-          "canal" => "003",
-          "nro_ser" => "",
-        }.freeze
-
         def initialize(client:, host:)
           @client = client
           @host = host
@@ -15,17 +9,19 @@ module SantanderChile
 
         attr_accessor :client, :host
 
-        def post(path, body: {}, headers: {}, login: false)
-          response = faraday(login: login).post(path, body) do |request|
-            request.headers = EXTRA_HEADERS.merge(headers)
+        def post(path, body:, headers: {}, login: false)
+          response = faraday(login: login).post(path, body, headers) do |request|
+            if !login
+              request.headers = { "access-token" => @client.token.tokenJWT }.merge(headers)
+            end
           end
         end
 
-        def faraday(login:)
+        def faraday(login)
           Faraday.new(url: host) do |config|
             config.request :url_encoded if login
-            config.request :oauth2, client.token.tokenJWT, token_type: :bearer if client.token
-            config.request :json unless login
+            config.request :oauth2, client.token.access_token, token_type: :bearer if client.token # TODO check token timeout
+            config.request :json if !login
             config.response :raise_error
             config.response :json, content_type: "application/json"
             client.config.faraday.call(config)
