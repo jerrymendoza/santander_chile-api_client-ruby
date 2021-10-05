@@ -13,7 +13,7 @@ module SantanderChile
       attr_accessor(*ATTRIBUTES)
 
       def initialize(args = {})
-        args.each do |key, value|
+        args.to_h.each do |key, value|
           next unless ATTRIBUTES.include?(key.to_sym)
 
           instance_variable_set("@#{key}", value)
