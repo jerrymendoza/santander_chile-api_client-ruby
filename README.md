@@ -25,6 +25,15 @@ client = SantanderChile::ApiClient::Client.new do |config|
     config.client_id = '<CLIENT_ID>'
 end
 ```
+
+### Login
+```rb
+client.login(
+    username: "00123456781", #12.345.678-1
+    password: "XXXX",
+    )
+```
+
 ### Resources
 
 #### Products (accounts)
@@ -35,6 +44,12 @@ results = client.products.list
 results.data
 #=> [#<SantanderChile::ApiClient::Account>, #<SantanderChile::ApiClient::Account:>]
 ```
+### Todo
+- [x] ~~Products (accounts)~~
+- [ ] Balance
+- [ ] Transactions
+- [ ] Transfers
+- [ ] Payments
 
 ## Development
 
