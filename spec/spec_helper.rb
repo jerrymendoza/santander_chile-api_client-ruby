@@ -1,5 +1,8 @@
 require "bundler/setup"
 require "santander_chile/api_client"
+require "dotenv"
+Dotenv.load(".env")
+Dir[File.expand_path("helpers/**/*.rb", __dir__)].each { |f| require f }
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
@@ -11,4 +14,6 @@ RSpec.configure do |config|
   config.expect_with :rspec do |c|
     c.syntax = :expect
   end
+
+  config.include ClientHelper
 end
