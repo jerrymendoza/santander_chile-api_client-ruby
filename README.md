@@ -50,15 +50,25 @@ account = result.first
 #=> <SantanderChile::ApiClient::Account>
 
 ```
+#### Movements
+```rb
+movements = client.movements(account)
 #=> SantanderChile::ApiClient::Collection
 
-results.data
-#=> [#<SantanderChile::ApiClient::Account>, #<SantanderChile::ApiClient::Account:>]
+movements.each { |x| x }
+#=> <SantanderChile::ApiClient::Movement   *empty movement*>
+#=> <SantanderChile::ApiClient::Movement>
+#=> <SantanderChile::ApiClient::Movement>
+
+# ** For some reason, the api return a list with and empty first element
+
 ```
+
+
 ### Todo
 - [x] ~~Products (accounts)~~
+- [x] ~~Movements~~
 - [ ] Balance
-- [ ] Transactions
 - [ ] Transfers
 - [ ] Payments
 
