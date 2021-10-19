@@ -38,7 +38,18 @@ client.login(
 
 #### Products (accounts)
 ```rb
-results = client.products.list
+results = client.products
+#=> SantanderChile::ApiClient::Collection
+
+results.each { |x| x }
+#=> <SantanderChile::ApiClient::Account>
+#=> <SantanderChile::ApiClient::Account:>
+#=> <SantanderChile::ApiClient::Account>
+
+account = result.first
+#=> <SantanderChile::ApiClient::Account>
+
+```
 #=> SantanderChile::ApiClient::Collection
 
 results.data

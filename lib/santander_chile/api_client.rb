@@ -34,7 +34,8 @@ module SantanderChile
       end
 
       def products
-        ProductsResource.new(self)
+        ProductsResource.new(self).list
+      end
       end
     end
   end

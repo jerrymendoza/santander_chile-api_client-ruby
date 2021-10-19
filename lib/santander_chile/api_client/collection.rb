@@ -1,6 +1,7 @@
 module SantanderChile
   module ApiClient
     class Collection
+      include Enumerable
       attr_reader :data
 
       def initialize(data:)
@@ -15,6 +16,10 @@ module SantanderChile
             type.new(attrs)
           },
         )
+      end
+
+      def each(*args, &block)
+        @data.each(*args, &block)
       end
     end
   end
