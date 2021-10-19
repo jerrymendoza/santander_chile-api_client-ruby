@@ -10,9 +10,9 @@ module SantanderChile
       "PATH": "ConsultaSaldo",
       "KEYS_TO": ["DATA", "AS_TIB_Consulta_Saldo_Response", "OUTPUT", "ESCALARES"],
     }
-    TRANSACTIONS = {
-      "PATH": "MvtosYDeposiDocCtas",
-      "KEYS_TO": [],
+    MOVEMENTS = {
+      "PATH": "Consultas/MvtosYDeposiDocCtas",
+      "KEYS_TO": ["DATA", "MovimientosDepositos"],
     }
   end
 end
