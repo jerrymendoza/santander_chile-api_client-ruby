@@ -10,10 +10,12 @@ module SantanderChile
 
     autoload :Object, "santander_chile/api_client/models/object"
     autoload :Account, "santander_chile/api_client/models/account"
+    autoload :Movement, "santander_chile/api_client/models/movement"
     autoload :Collection, "santander_chile/api_client/collection"
 
     autoload :Resource, "santander_chile/api_client/resources/resource"
     autoload :ProductsResource, "santander_chile/api_client/resources/products"
+    autoload :MovementsResource, "santander_chile/api_client/resources/movements"
 
     class Client
       autoload :Configuration, "santander_chile/api_client/client/configuration"
@@ -34,7 +36,11 @@ module SantanderChile
       end
 
       def products
-        ProductsResource.new(self)
+        ProductsResource.new(self).list
+      end
+
+      def movements(account)
+        MovementsResource.new(self).list(account)
       end
     end
   end
