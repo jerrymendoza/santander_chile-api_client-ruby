@@ -9,8 +9,24 @@ module SantanderChile
 
       private
 
-      def post_request(url, body: {}, headers: { "Content-Type" => "application/json" })
+      def post_request(url, body: {}, headers: {})
         handle_response client.connection.post(url, body: body, headers: headers)
+      end
+
+      def build_cabecera_body(custom_name = "cabecera")
+        { "#{custom_name}": {
+          "HOST": {
+            "USUARIO-ALT":  "GHOBP",
+            "TERMINAL-ALT": "",
+            "CANAL-ID":     client.config.canal_id,
+          },
+          "CanalFisico": client.config.canal_fisico,
+          "CanalLogico": client.config.canal_logico,
+          "RutCliente":  client.username,
+          "RutUsuario":  client.username,
+          "IpCliente":   "",
+          "InfoDispositivo": "xx",
+        } }
       end
 
       def handle_response(response)
