@@ -16,4 +16,5 @@ RSpec.configure do |config|
   end
 
   config.include ClientHelper
+  config.include JsonHelper
 end

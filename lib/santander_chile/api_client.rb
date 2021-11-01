@@ -12,6 +12,7 @@ module SantanderChile
     autoload :Account, "santander_chile/api_client/models/account"
     autoload :Movement, "santander_chile/api_client/models/movement"
     autoload :Collection, "santander_chile/api_client/collection"
+    autoload :Template, "santander_chile/api_client/templates/templates"
 
     #resources
     autoload :Resource, "santander_chile/api_client/resources/resource"
