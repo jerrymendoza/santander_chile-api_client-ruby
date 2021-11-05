@@ -8,10 +8,10 @@ module SantanderChile
         @data = data
       end
 
-      def self.from_response(response, keys_to:, type:)
+      def self.from_response(response, dig_keys:, type:)
         body = response.body
         new(
-          data: body.dig(*keys_to).map {
+          data: body.dig(*dig_keys).map {
             |attrs|
             type.new(attrs)
           },
