@@ -24,6 +24,10 @@ module SantanderChile
       def movements(account)
         MovementsResource.new(self).list(account)
       end
+
+      def contacts
+        PaymentsResource.new(self).contacts.data
+      end
     end
   end
 end

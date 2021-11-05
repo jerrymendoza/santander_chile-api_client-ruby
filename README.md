@@ -64,10 +64,20 @@ movements.each { |x| x }
 
 ```
 
+#### Contacts
+```rb
+contacts = client.contacts
+#=> SantanderChile::ApiClient::Collection
+
+contacts.each { |x| x }
+#=> <SantanderChile::ApiClient::Contact>
+#=> <SantanderChile::ApiClient::Contact>
+```
 
 ### Todo
 - [x] ~~Products (accounts)~~
 - [x] ~~Movements~~
+- [x] ~~Contacts~~
 - [ ] Balance
 - [ ] Transfers
 - [ ] Payments
