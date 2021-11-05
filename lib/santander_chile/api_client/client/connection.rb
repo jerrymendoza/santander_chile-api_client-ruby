@@ -21,7 +21,7 @@ module SantanderChile
           Faraday.new(url: host) do |config|
             config.request :url_encoded if login
             config.request :oauth2, client.token.access_token, token_type: :bearer if client.token # TODO check token timeout
-            config.request :json if !login
+            config.request :json
             config.response :raise_error
             config.response :json, content_type: "application/json"
             client.config.faraday.call(config)

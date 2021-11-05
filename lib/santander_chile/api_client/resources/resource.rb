@@ -1,6 +1,7 @@
 module SantanderChile
   module ApiClient
     class Resource
+      include Template
       attr_reader :client
 
       def initialize(client)
@@ -9,7 +10,7 @@ module SantanderChile
 
       private
 
-      def post_request(url, body: {}, headers: { "Content-Type" => "application/json" })
+      def post_request(url, body: {}, headers: {})
         handle_response client.connection.post(url, body: body, headers: headers)
       end
 

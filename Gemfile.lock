@@ -1,15 +1,19 @@
 PATH
   remote: .
   specs:
-    santander_chile-api_client (1.0.0)
+    santander_chile-api_client (1.1.0)
+      erb (>= 2.2)
       faraday (~> 1.7)
       faraday_middleware (~> 1.1)
 
 GEM
   remote: https://rubygems.org/
   specs:
+    cgi (0.1.0)
     diff-lcs (1.4.4)
     dotenv (2.7.6)
+    erb (2.2.3)
+      cgi
     faraday (1.7.1)
       faraday-em_http (~> 1.0)
       faraday-em_synchrony (~> 1.0)

@@ -1,17 +1,17 @@
 module SantanderChile
   module ApiClient
     class ProductsResource < Resource
-      ## PATHS on santander_chile/api_client/endpoints.rb
-      def products_params(username)
-        {
-          "cabecera" => { "RutUsuario" => username },
-          "INPUT" => { "NUMERODOCUMENTO" => username },
-        }
-      end
+      DIG_RESPONSE = ["DATA", "OUTPUT", "MATRICES", "MATRIZCAPTACIONES", "e1"]
 
       def list(**params)
-        response = post_request(PRODUCTS[:PATH], body: products_params(@client.username).to_json)
-        Collection.from_response(response, keys_to: PRODUCTS[:KEYS_TO], type: Account)
+        response = post_request("CruceProductoOnline", body: body_builder)
+        Collection.from_response(response, dig_keys: DIG_RESPONSE, type: Account)
+      end
+
+      private
+
+      def body_builder
+        with_template "requests/CruceProductoOnline", client: @client
       end
     end
   end

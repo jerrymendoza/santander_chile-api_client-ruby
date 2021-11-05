@@ -1,47 +1,31 @@
 require "faraday"
 require "faraday_middleware"
+require "erb"
 require "santander_chile/api_client/version"
-require "santander_chile/api_client/endpoints"
 
 module SantanderChile
   module ApiClient
     autoload :Error, "santander_chile/api_client/error"
     autoload :Token, "santander_chile/api_client/token"
 
+    #models
     autoload :Object, "santander_chile/api_client/models/object"
     autoload :Account, "santander_chile/api_client/models/account"
     autoload :Movement, "santander_chile/api_client/models/movement"
+    autoload :Contact, "santander_chile/api_client/models/contact"
     autoload :Collection, "santander_chile/api_client/collection"
+    autoload :Template, "santander_chile/api_client/templates/templates"
 
+    #resources
     autoload :Resource, "santander_chile/api_client/resources/resource"
     autoload :ProductsResource, "santander_chile/api_client/resources/products"
     autoload :MovementsResource, "santander_chile/api_client/resources/movements"
+    autoload :PaymentsResource, "santander_chile/api_client/resources/payments"
 
-    class Client
-      autoload :Configuration, "santander_chile/api_client/client/configuration"
-      autoload :Connection, "santander_chile/api_client/client/connection"
-      autoload :Authentication, "santander_chile/api_client/client/authentication"
-
-      include Authentication
-      attr_accessor :config
-
-      def initialize
-        self.config = Configuration.new
-        yield(config) if block_given?
-        config.validate!
-      end
-
-      def connection(host: BASE_URL)
-        Connection.new(client: self, host: host)
-      end
-
-      def products
-        ProductsResource.new(self).list
-      end
-
-      def movements(account)
-        MovementsResource.new(self).list(account)
-      end
-    end
+    #client
+    autoload :Configuration, "santander_chile/api_client/client/configuration"
+    autoload :Connection, "santander_chile/api_client/client/connection"
+    autoload :Authentication, "santander_chile/api_client/client/authentication"
+    autoload :Client, "santander_chile/api_client/client"
   end
 end

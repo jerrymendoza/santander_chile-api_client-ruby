@@ -64,10 +64,20 @@ movements.each { |x| x }
 
 ```
 
+#### Contacts
+```rb
+contacts = client.contacts
+#=> SantanderChile::ApiClient::Collection
+
+contacts.each { |x| x }
+#=> <SantanderChile::ApiClient::Contact>
+#=> <SantanderChile::ApiClient::Contact>
+```
 
 ### Todo
 - [x] ~~Products (accounts)~~
 - [x] ~~Movements~~
+- [x] ~~Contacts~~
 - [ ] Balance
 - [ ] Transfers
 - [ ] Payments
@@ -89,4 +99,4 @@ The gem is available as open source under the terms of the [MIT License](https:/
 
 ## Code of Conduct
 
-Everyone interacting in the SantanderChile::ApiClient project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/santander_chile-api_client/blob/master/CODE_OF_CONDUCT.md).
+Everyone interacting in the SantanderChile::ApiClient project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/jerrymendoza/santander_chile-api_client/blob/master/CODE_OF_CONDUCT.md).
