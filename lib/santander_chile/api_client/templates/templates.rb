@@ -13,7 +13,7 @@ module SantanderChile
         end
       end
 
-      path_templates = File.expand_path("./lib/santander_chile/api_client/templates")
+      path_templates = File.dirname(__FILE__)
       TEMPLATES = {}
 
       ["requests"].each do |category|
